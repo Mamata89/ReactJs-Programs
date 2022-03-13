@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+
+</head>
+
+<body>
+    <div id='root'></div>
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> -->
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class ProgressBar extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    tasks: [
+                        { id: 1, title: 'server deploy', completed: false },
+                        { id: 2, title: 'db backup', completed: true},
+                        { id: 3, title: 'sadmin dash board', completed: true}
+                    ],
+                    taskpercent: ''
+                }
+            }
+            handleChange = (ele) => {
+                let tasks = this.state.tasks.map((task) => {
+                    if (ele.id == task.id) {
+                        return Object.assign({}, task, { completed: !task.completed})
+                    }
+                    else {
+                        return Object.assign({}, task)
+                    }
+                })
+                let taskpercent = tasks.filter((task) => (task.completed)).length / tasks.length * 100
+                this.setState({ tasks, taskpercent})
+            }
+            render() {
+                return (
+                    <div>
+                     <progress  value={this.state.taskpercent} max='100'/>
+                        <ul>
+                            {this.state.tasks.map((ele) => {
+                                return <li key={ele.id}><input type='checkbox' checked={ele.completed} onChange={() => { this.handleChange(ele) }} />{ele.completed ? <p><del>{ele.title}</del></p> : <p>{ele.title}</p>}</li>
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+
+        }
+        ReactDOM.render(<ProgressBar />, roothandle)
+    </script>
+</body>
+
+</html>
+
+<!-- <progress value={this.state.taskpercent} class="progress-bar" style={{"width" : "45"}}/>
+<progress value={this.state.taskpercent} class="progress-bar" style={{"width" : "75%"}}/>
+<progress value={this.state.taskpercent} class="progress-bar" style={{"width" : "90%"}}/> -->

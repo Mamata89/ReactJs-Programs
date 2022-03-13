@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style></style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class Random extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    random: ''
+                }
+            }
+            handleClick() {
+                const random = Math.round(Math.random() * 100)
+                this.setState(function (prevState) {
+                    return {
+                        random: random
+                    }
+                })
+            }
+            render() {
+                console.log('render', this)
+                return (
+                    <div>
+                        <h1>{this.state.random}</h1>
+                        <button onClick={this.handleClick.bind(this)}>random</button>
+                    </div>
+                )
+            }
+        }
+
+        const ele = (
+            <Random />
+        )
+        ReactDOM.render(ele, roothandle)
+    </script>
+</body>
+
+</html>

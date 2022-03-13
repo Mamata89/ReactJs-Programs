@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>incomplete</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const tasks = [
+            { id: 1, title: 'deploy software', iscompleted: false },
+            { id: 2, title: 'db backup', iscompleted: true },
+            { id: 3, title: 'write test', iscompleted: false },
+            { id: 4, title: 'ap docs', iscompleted: true }
+        ]
+        const ele = (
+            <div>
+                <h2>listing tasks-{tasks.length}</h2>
+                <table border='1'>
+                    <thead>
+                        <tr>
+                            <th>sl.no</th>
+                            <th>title</th>
+                            <th>status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tasks.map(function (ele) {
+                            return (
+                                <tr key={ele.id}>
+                                    <td>{ele.id}</td>
+                                    <td>{ele.title}</td>
+                                    <td>{ele.iscompleted == true ? (<div style={{ background: 'red', color: 'white' }}>iscompleted</div>) : (<div style={{ background: 'green', color: 'white' }}>not completed</div>)}</td>
+                                </tr>
+                            )
+                        })}
+                    </tbody>
+                </table>
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

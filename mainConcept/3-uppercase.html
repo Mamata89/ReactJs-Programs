@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+
+<head>
+    <title>upperscase</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        const msg = 'hello react'
+        const ele = <h1>{msg.toUpperCase()}{2 + 2}</h1>
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

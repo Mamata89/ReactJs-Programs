@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class CharUppperCase extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    char: ''
+                }
+            }
+            handleChange = (e) => {
+                const char = e.target.value
+                this.setState({
+                    char: char.toUpperCase()
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>all letters are in capital</h2>
+                        <form>
+                            <textarea type='text' value={this.state.char} onChange={this.handleChange}></textarea>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<CharUppperCase />, roothandle)
+    </script>
+</body>
+
+</html>

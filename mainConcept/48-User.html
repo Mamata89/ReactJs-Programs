@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle=document.getElementById('root')
+        class Users extends React.Component{
+            constructor(){
+                super()
+                this.state={
+                    users:[
+                        {id:1,name:'komala',email:'komala@gmail.com'},
+                        {id:2,name:'mamata',email:'mamata@gmail.com'},
+                        {id:3,name:'manoj',email:'manoj@gmail.com'},
+                        {id:4,name:'laxmi',email:'mamata@gmail.com'}
+                    ]
+                }
+            }
+            handleClick=(name)=>{
+                let input=prompt('enter name')
+                let result=this.state.users.filter(user=>user.name !==input
+                )
+                input !== name ? alert('invalid name') : (this.setState({ users: result }))
+            }
+            render(){
+                return(
+                    <div>
+                        <h2>users length-{this.state.users.length}</h2>
+                        <table border='1'>
+                            <thead>
+                                <tr>
+                                    <th>sl.no</th>
+                                    <th>name</th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                           
+                               {this.state.users.map((ele) => {
+                                    return <tr key={ele.id}>
+                                        <td>{ele.id}</td>
+                                        <td>{ele.name}</td>
+                                        {console.log(this)}
+                                        <td><button onClick={() => this.handleClick(ele.name)}>show</button>
+                                        </td>
+                                    </tr>
+                                })}
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Users/>,rootHandle)
+    </script>
+</body>
+</html>

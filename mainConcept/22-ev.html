@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function Print(props) {
+            console.log(props.n)
+            return (
+                <h1>{props.n % 2 == 0 ? 'even' : 'odd'}</h1>
+            )
+        }
+        const ele = (
+            <div>
+                <Print n={[29]} />
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

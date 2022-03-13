@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function UserList() {
+            function handleClick(email) {
+                alert('user' + email)
+            }
+            const users = [
+                { id: 1, name: 'komala', email: 'komalamoger@gmail.com' },
+                { id: 2, name: 'mamata', email: 'mamatamoger@gmail.com' }
+            ]
+            return (
+                <ul>
+                    {users.map(function (user) {
+                        return <li key={user.id}>{user.name}<button onClick={() => handleClick(user.email)}>show</button></li>
+                    })}
+                </ul>
+            )
+        }
+        ReactDOM.render(<UserList />, rootHandle)
+    </script>
+</body>
+
+</html>

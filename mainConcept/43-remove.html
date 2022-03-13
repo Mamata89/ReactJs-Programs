@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class Parent extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    users: [
+                        { id: 1, name: 'komala' },
+                        { id: 2, name: 'mamata' },
+                        { id: 3, name: 'manoj' },
+                        { id: 4, name: 'laxmi' }
+                    ]
+                }
+            }
+            handleRemove = (userid) => {
+                const confirmRemove = window.confirm(`are u sure u want remove ${userid.name}`)
+                if (confirmRemove) {
+                    // this.setState((prevState)=>{
+                    //     return{
+                    //         users:prevState.users.filter((user)=>user.id!==selectid.id)
+                    //     }
+                    // })
+                    this.setState((prevState) => {
+                        return {
+                            users: prevState.users.filter(user => user.id !== userid.id
+                            )
+                        }
+                    })
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>listing user-{this.state.users.length}</h2>
+                        <ul>
+                            {this.state.users.map((user) => {
+                                return <Child key={user.id}
+                                    name={user.name}
+                                    id={user.id}
+                                    handleRemove={this.handleRemove} />
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        function Child(props) {
+            return (
+                <div>
+
+                    <li>{props.name} <button onClick={() => { props.handleRemove(props) }}>remove</button></li>
+
+                </div>
+            )
+        }
+        ReactDOM.render(<Parent />, rootHandle)
+    </script>
+</body>
+
+</html>

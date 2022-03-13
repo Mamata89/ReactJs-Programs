@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function Filter(props) {
+            console.log(props)
+            return (
+                <div>
+                    {props.num.map(function (ele) {
+                        return (
+                            <ul key={ele.id}>
+                                <li>{ele}-{ele % 2 == 0 ? 'even' : 'odd'}</li>
+                            </ul>
+                        )
+                    })}
+                </div>
+            )
+        }
+        const ele = (
+            <Filter num={[10, 59, 87]} />
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

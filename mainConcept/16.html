@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function Welcome(props) {
+            return (
+                <h1>hello-{props.name}</h1>
+            )
+        }
+        const ele = (
+            <div>
+                <Welcome name='komala' />
+                <Welcome name='sanvi' />
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

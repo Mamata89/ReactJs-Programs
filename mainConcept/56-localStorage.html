@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle=document.getElementById('root')
+        class LocalStorage extends React.Component{
+            constructor(){
+                super()
+                this.state={
+                    title:'',
+                    body:''
+                }
+            }
+            handletitleChange= (e) => {
+                const title = e.target.value
+                this.setState({ title: title })
+            }
+            handlebodyChange=(e)=>{
+                const body=e.target.value
+                this.setState({body})
+            }
+          
+            handlesave=(e)=>{
+                e.preventDefault()
+                const title=localStorage.setItem('title',this.state.title)
+                const body=localStorage.setItem('body',this.state.body)
+            }
+            // handlereload=(ev)=>{
+            //     ev.preventDefault()
+            //     const title=localStorage.getItem('title')
+            //     const body=localStorage.setItem('body')
+            //     this.setState({title,body})
+            // }
+            handleReload = (ev) => {
+                ev.preventDefault()
+                const title = localStorage.getItem('title')
+                const body = localStorage.getItem('body')
+                this.setState({ title, body});
+            }
+            render(){
+                console.log("title",this.state.title)
+                console.log("body",this.state.body)
+                return(
+                    <div>
+                        <label htmlFor="title">Title</label><br/>
+                        <input type="text" value={this.state.title} onChange={this.handletitleChange} /><br/>
+                        <label htmlFor="body">Body</label><br/>
+                        <textarea name="body" value={this.state.body} onChange={this.handlebodyChange}></textarea><br/>
+                        <button onClick={this.handleReload}> Reload </button>
+                        <button onClick={this.handlesave}>Save</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<LocalStorage/>,rootHandle)
+    </script>
+</body>
+</html>

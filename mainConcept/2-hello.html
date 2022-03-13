@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script>
+        const rootHandle = document.getElementById('root')
+        const ele = React.createElement('h1', { id: 'heading' }, 'hello world')
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

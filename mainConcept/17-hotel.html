@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        h2 {
+            color: darkblue;
+        }
+
+        ul {
+            text-align: start;
+            color: brown;
+        }
+
+        ul h2 {
+            color: chartreuse;
+        }
+    </style>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const hotels = [
+            { id: 1, name: 'Pizza Hut', rating: 3.8, exclusive: false, cuisines: ['fast food', 'pizza'] },
+            { id: 2, name: 'MTR', rating: 4.8, exclusive: true, cuisines: ['south Indian', 'North Indian'] },
+            { id: 3, name: 'Hari Super', rating: 3.8, exclusive: false, cuisines: ['Sandwich', 'chats'] }
+        ]
+        function Hotels(props) {
+            console.log(props)
+            return (
+                <div>
+                    {props.h.map(function (ele) {
+                        return (
+                            <div>
+                                <ul key={ele.id}>
+                                    <h2>{ele.name}</h2>
+                                    <p>rating-{ele.rating}</p>
+                                    <p>cuisines-{ele.cuisines.join(',')}</p>
+                                    {ele.exclusive && <p>exclusive</p>}
+                                </ul>
+                            </div>
+                        )
+                    })}
+                </div>
+            )
+        }
+        const ele = (
+            <div>
+                <h2>Listing hotels-{hotels.length}</h2>
+                <Hotels h={hotels} />
+            </div>
+
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</head>
+
+<body>
+
+</body>
+
+</html>

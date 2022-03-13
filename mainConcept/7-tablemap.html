@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+<style>
+    td {
+        text-align: center;
+    }
+</style>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const employees = [
+            { id: 1, name: 'komala', email: 'komalamoger08@gmail.com', mobile: '203894567' },
+            { id: 2, name: 'mamata', email: 'mamatamoger08@gmail.com', mobile: '208998567' },
+            { id: 3, name: 'manoj', email: 'manojmoger08@gmail.com', mobile: '208903167' },
+            { id: 4, name: 'mani', email: 'manimoger08@gmail.com', mobile: '174998567' },
+        ]
+        const ele = (
+            <div>
+                <h1>listing employees-{employees.length}</h1>
+                <table border='1'>
+                    <thead>
+                        <tr>
+                            <th>sl.no</th>
+                            <th>name</th>
+                            <th>email</th>
+                            <th>mobile</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {
+                            employees.map(function (ele) {
+                                return <tr key={ele.id}>
+                                    <td >{ele.id}</td>
+                                    <td>{ele.name}</td>
+                                    <td>{ele.email}</td>
+                                    <td>{ele.mobile}</td>
+                                </tr>
+                            })
+                        }
+                    </tbody>
+                </table>
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const tasks = [
+            { id: 1, title: 'deploy software', iscompleted: false },
+            { id: 2, title: 'db backup', iscompleted: true },
+            { id: 3, title: 'write test', iscompleted: true },
+            { id: 4, title: 'ap docs', iscompleted: false }
+        ]
+        const completedtask = tasks.filter(task => (task.iscompleted))
+        const incompletedtask = tasks.filter(task => (!task.iscompleted))
+        function Taskview(props) {
+            console.log('props', props)
+            return (
+                <div>
+                    <h2>{props.title}-{props.tasks.length}</h2>
+                    <table border='1'>
+                        <thead>
+                            <tr>
+                                <th>sl.no</th>
+                                <th>title</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {props.tasks.map(function (task) {
+                                return (
+                                    <tr key={task.id}>
+                                        <td>{task.id}</td>
+                                        <td>{task.title}</td>
+
+                                    </tr>
+                                )
+                            })}
+                        </tbody>
+                    </table>
+                </div>
+            )
+        }
+        const ele = (
+            <div>
+                <Taskview title='all task' tasks={tasks} />
+                <Taskview title='completed' tasks={completedtask} />
+                <Taskview title='incompleted' tasks={incompletedtask} />
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

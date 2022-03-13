@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class RemoveTask extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    tasks: [
+                        { id: 1, title: 'server deploy', completed: false },
+                        { id: 2, title: 'db backup', completed: true },
+                        { id: 3, title: 'sadmin dash board', completed: true },
+                    ]
+                }
+            }
+            handleRemove = (selectedTask) => {
+                const confirmremove = window.confirm(`are sure you want to remove ${selectedTask.title}`)
+                if (confirmremove) {
+
+                    this.setState((prevState) => {
+                        return {
+                            tasks: prevState.tasks.filter(task => task.id !== selectedTask.id)
+                        }
+                    })
+                }
+            }
+
+
+            render() {
+                return (
+                    <div>
+                        <h1>listing tasks-{this.state.tasks.length}</h1>
+                        <ul>
+                            {this.state.tasks.map((task) => {
+                                return <li key={task.id}>{task.title}
+                                    <button onClick={() => { this.handleRemove(task) }}>remove</button>
+                                </li>
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<RemoveTask />, rootHandle)
+    </script>
+</body>
+
+</html>

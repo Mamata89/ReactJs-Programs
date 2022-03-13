@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>map</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const fruits = ['mango', 'apple', 'orange', 'pineapple']
+        const result = []
+        fruits.forEach(function (ele) {
+            result.push(<li key={ele}>{ele}</li>)
+        })
+        const ele = (
+            <ul>{result}</ul>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

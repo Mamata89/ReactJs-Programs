@@ -1,0 +1,80 @@
+ <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="root">
+    </div> 
+    <!-- <srcipt src="./js/react-development.js"></srcipt>
+    <script src="./js/reactDom-development.js"></script>
+    <script src="./js/babel.js"></script>
+    <script type="text/babel"> -->
+
+     <script src='./js/react-development.js'></script>
+     <script src='./js/reactDom-development.js'></script> 
+     <script src='./js/babel.js'></script> 
+     <script type='text/babel'>  
+        const roothandle = document.getElementById('root')
+ const fruits=['manog','komala','apple']
+ function Print() {
+            return (
+            <div>
+                {fruits.map((ele)=>{
+                    return <li key={ele.id}>{ele}</li>
+                })}
+            </div>
+            )
+        }
+     
+        ReactDOM.render(<Print/>, roothandle )
+    </script>
+
+</body> 
+
+</html>
+
+
+
+
+    <!-- class UserList extends React.Component{
+        constructor(){
+            super()
+            this.state={
+                user:[
+                    {id:1,name:'komal'},
+                    {id:2,name:'mamat'},
+                    {id:3,name:'manoj'}
+                ]
+            }
+        }
+        handleClick=(id)=>{
+            this.setState((prevSat))
+            }
+        
+        render(){
+            return(
+                <div>
+                    <h1>length user{this.state.user.length}</h1>
+                    <ul>
+                        {this.state.user.map((ele)=>{
+                            <User key={user.id} name={user.name}
+                            handleClick={this.handleClick}/>
+                        })}
+                    </ul>
+            
+                </div>
+            )
+        }
+    }
+    function User(props){
+return(
+
+<button onClick={()=>props.handleClick(props.id)}>remove</button>
+)
+    }  -->

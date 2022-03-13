@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .textarea {
+            border-color: rgb(199, 89, 26);
+            border-radius: 20px 2px;
+            color: rgb(199, 89, 26);
+        }
+
+        h1,
+        h2 {
+            color: rgb(199, 89, 26);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class WordChar extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    word: 0,
+                    char: 0
+                }
+            }
+            handleChange = (e) => {
+                const text = e.target.value
+                this.setState({
+                    char: text.length,
+                    word: text.split(' ').length - 1
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <form>
+                            <h2>textarea</h2>
+                            <textarea type='text' class='textarea' value={this.state.text} onChange={this.handleChange} />
+                            <h1>word{this.state.word}-char{this.state.char}</h1>
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<WordChar />, roothandle)
+    </script>
+</body>
+
+</html>

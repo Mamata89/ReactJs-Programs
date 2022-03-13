@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const tasks = [
+            { id: 1, title: 'delpoy', iscompleted: false },
+            { id: 2, title: 'db backup', iscompleted: true },
+            { id: 3, title: 'write test', iscompleted: false },
+            { id: 4, title: 'ap docs', iscompleted: true }
+        ]
+        const ele = (
+            <div>
+                <table border='1'>
+                    <thead>
+                        <tr>
+                            <th>sl.no</th>
+                            <th>title</th>
+                            <th>iscompleted</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tasks.filter(function (ele) {
+                            return ele.iscompleted
+                        }).map(function (ele, i) {
+                            return (
+                                <tr key={ele.id}>
+                                    <td>{ele.id}</td>
+                                    <td>{ele.title}</td>
+                                    <td>{ele.iscompleted = 'completed'}</td>
+                                </tr>
+                            )
+
+                        })
+                        }
+                    </tbody>
+                </table>
+
+
+                <table border='1' >
+                    <thead>
+                        <tr>
+                            <td>sl.no</td>
+                            <td>title</td>
+                            <td>iscompleted</td>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {tasks.filter(function (ele) {
+                            return !ele.iscompleted
+                        }).map(function (ele, i) {
+                            return (
+                                <tr key={ele.id}>
+                                    <td>{ele.id}</td>
+                                    <td>{ele.title}</td>
+                                    <td>{ele.iscompleted = ' not completed'}</td>
+                                </tr>
+                            )
+
+                        })
+                        }
+                    </tbody>
+                </table>
+            </div>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

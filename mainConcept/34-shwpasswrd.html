@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class ShowPassword extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    username: '',
+                    password: '',
+                    Showpassword: '',
+                    nottick: true
+                }
+            }
+            handleChangeUsername = (e) => {
+                const username = e.target.value
+                this.setState({
+                    username: username
+                })
+            }
+            handleChangepassword = (e) => {
+                const password = e.target.value
+                this.setState({
+                    password: password
+                })
+            }
+            handleShowpassword = () => {
+                this.setState({
+                    nottick: !this.state.nottick
+                })
+            }
+            handleSubmit = (e) => {
+                e.preventDefault()
+                const formatData = {
+                    username: this.state.username,
+                    password: this.state.password,
+                    ShowPassword: this.state.nottick
+                }
+                console.log(formatData)
+            }
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <label htmlFor="username">username</label>
+                            <input type="text" class='username' value={this.state.username} onChange={this.handleChangeUsername} /><br />
+                            <label htmlFor="password">password</label>
+                            <input type={this.state.nottick ? "password" : 'text'} class='password' value={this.state.password} onChange={this.handleChangepassword} /><br />
+                            <label htmlFor="showpassword">showpassword</label>
+                            <input type='checkbox' class='checked' value={this.state.Showpassword} onClick={this.handleShowpassword} /><br />
+                            <input type="submit" />
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<ShowPassword />, roothandle)
+    </script>
+</body>
+
+</html>

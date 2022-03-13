@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+      h2{
+        color:green;
+      }
+        thead{
+            background-color:springgreen;
+            color:green;
+        
+        }
+        tbody{
+            background-color:springgreen;
+            color:green;
+        }
+        td {
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle=document.getElementById('root')
+        class CheckAll extends React.Component{
+            constructor(){
+                super()
+                this.state={
+                    tasks:[
+                            {id:1,title:'Deploy app',status:false},
+                            {id:2,title:'setup database',status:false},
+                            {id:3,title:'create a new app',status:false},
+                            {id:4,title:'deploy app to staging',status:false}
+                            ],
+                           
+                }
+            }
+            handleClick=(selecttask)=>{
+                const tasks=this.state.tasks.map((task)=>{
+                    if(selecttask.id==task.id){
+                        return Object.assign({},task,{status:!task.status})
+                    }
+                    else{
+                        return Object.assign({},task)
+                    }
+                })
+                this.setState({tasks})
+            }
+            handlecheckbox=()=>{
+                const tasks=this.state.tasks.map((task)=>{
+                    return Object.assign({},task,{status:!task.status})
+                })
+                this.setState({tasks})
+            }
+            render(){
+                return(
+                    <div>
+                        <h2>Mark all completed</h2>
+                      <table border='1'>
+                        <thead>
+                            <tr>
+                                <th><input type='checkbox'value={this.state.tasks.status} onChange={this.handlecheckbox}/></th>
+                                <th>Title</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                              {this.state.tasks.map((task)=>{
+                                    return (<tr key={task.id}>
+                                        <td><input type='checkbox' checked={task.status}  onChange={()=>this.handleClick(task)}/></td>
+                                        <td>{task.title}</td>
+                                        <td>{task.status?'completed':'pending'}</td>
+                                        </tr>)
+                                })}
+                        
+                        </tbody>
+                    </table>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<CheckAll/>,roothandle)
+    </script>
+</body>
+</html>

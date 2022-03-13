@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        .form {
+            text-align: center;
+        }
+
+        h1,
+        h3,
+        .userText,
+        .username {
+            color: rgb(110, 252, 197);
+            /* text-align: center; */
+        }
+
+        .submit {
+            color: rgb(26, 112, 79);
+            background: rgb(110, 252, 197);
+            /* text-align: center; */
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type=text/babel>
+const roothandle=document.getElementById('root')
+class FormChar extends React.Component{
+constructor(){
+    super()
+    this.state={
+        username:''
+    }
+}
+    handleChange=(e)=>{
+        const username=e.target.value
+        this.setState({
+            username:username
+        })
+    }
+    handleSubmit=(e)=>{
+        e.preventDefault()
+        const formdata={
+            username:this.state.username
+        }
+        console.log(formdata,'loo')
+    }
+    render(){
+        console.log(this)
+        return(
+            <div>
+                <form onSubmit={this.handleSubmit} class='form'>
+                    <h1>Register</h1>
+                    <label htmlFor="username" class='userText'>Username</label>
+                    <input type="text" class='username' value={this.state.username} onChange={this.handleChange}/>
+                    <h3>the total character {this.state.username.length}</h3>
+                    <input type='submit' class='submit'/>
+                </form>
+            </div>
+        )
+    }
+}
+ReactDOM.render(<FormChar/>,roothandle)
+</script>
+</body>
+
+</html>

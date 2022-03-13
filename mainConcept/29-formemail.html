@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>form</title>
+    <style>
+        .userlabel,
+        h1,
+        .emaillabel {
+            color: rgb(0, 153, 255)
+        }
+
+        .username,
+        .email {
+            border: 1px solid rgb(0, 153, 255);
+            border-radius: 10px 2px;
+        }
+
+        .submit {
+            background-color: rgb(0, 153, 255);
+            color: rgb(33, 23, 172);
+            border-radius: 10px 2px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class RegisterForm extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    username: '',
+                    email: ''
+                }
+            }
+            handleUsernameChange = (e) => {
+                const username = e.target.value
+                this.setState({ username: username })
+            }
+            handleEmailChange = (e) => {
+                const email = e.target.value
+                this.setState({ email: email })
+            }
+            handleSubmit = (e) => {
+                e.preventDefault()
+                const data = {
+                    username: this.state.username,
+                    email: this.state.email
+                }
+                console.log(data)
+            }
+            render() {
+                return (
+                    // console.log('render',this)
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <h1>Register</h1>
+                            <label htmlFor="username" class='userlabel'>Username</label>
+                            <input type="text" class='username' value={this.state.username} onChange={this.handleUsernameChange} /><br />
+                            <label htmlFor="email" class='emaillabel'>Email</label>
+                            <input type="email" class='email' value={this.state.email} onChange={this.handleEmailChange} /><br />
+                            <input type="submit" class='submit' />
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<RegisterForm />, rootHandle)
+    </script>
+</body>
+
+</html>

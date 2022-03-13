@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class BtnComp extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    users: []
+                }
+            }
+            handleClick = () => {
+                const xhr = new XMLHttpRequest()
+                xhr.open('GET', 'https://jsonplaceholder.typicode.com/users')
+                xhr.send()
+                xhr.onload = () => {
+                    console.log(xhr.responseText)
+                    const users = JSON.parse(xhr.responseText)
+                    this.setState({
+                        users: users
+                    })
+                }
+            }
+
+            render() {
+                console.log(this)
+                return (
+                    <div>
+                        {this.state.users.length == 0 ? <button onClick={this.handleClick}>fetch data</button> : (<div>
+                            <h2>listing users-{this.state.users.length}</h2>
+                            <ul>
+                                {this.state.users.map(function (user) {
+                                    return (
+                                        <li key={user.id}>{user.name}</li>
+                                    )
+                                })}
+                            </ul>
+                        </div>)
+                        }
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<BtnComp />, roothandle)
+    </script>
+</body>
+
+</html>

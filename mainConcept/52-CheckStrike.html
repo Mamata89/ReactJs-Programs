@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+</head>
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle=document.getElementById('root')
+        class CheckStrike extends React.Component{
+            constructor(){
+                super()
+                this.state={
+                tasks: [
+                        { id: 1, title: 'server deploy', completed: false },
+                        { id: 2, title: 'db backup', completed: false },
+                        { id: 3, title: 'sadmin dash board', completed: false }
+                    ]
+                }
+            }
+            handleClick=(select)=>{
+                this.setState((prevState)=>({
+                  tasks:prevState.tasks.map((task)=>{
+                    if(task.id==select.id){
+                        return Object.assign({},task,{completed :!select.completed})
+                    }
+                    else{
+                        return Object.assign({},task)
+                    }
+                  })
+                }))
+            }
+
+            render(){
+                return(
+                    <div>
+                        <h2>listing tasks-{this.state.tasks.length}</h2>
+                        <ul>
+                            {this.state.tasks.map((task)=>{
+                                return <div key={task.id}><li >
+                                    <input type='checkbox' checked={task.completed} onChange={()=>{this.handleClick(task)}}
+                                   />{task.completed?(<del>{task.title}</del>):task.title}
+                                </li>
+                            </div>
+                            })}
+                        </ul>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<CheckStrike/>,rootHandle)
+    </script>
+</body>
+</html>

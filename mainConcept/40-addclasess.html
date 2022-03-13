@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class Parent extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    name: ''
+                }
+            }
+            handleSubmitName = (name) => {
+                this.setState({ name })
+            }
+            render() {
+                return (<div>
+                    <h2>{this.state.name}</h2>
+                    <Child handleSubmitName={this.handleSubmitName} /></div>)
+            }
+        }
+        class Child extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    username: ''
+                }
+            }
+            handleChange = (e) => {
+                const username = e.target.value
+                this.setState({ username })
+            }
+            handleSubmit = (e) => {
+                e.preventDefault()
+                this.props.handleSubmitName(this.state.username)
+
+            }
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            <label htmlFor="username">username</label>
+                            <input type="text" placeholder='enter username' value={this.state.username} onChange={this.handleChange} />
+                            <input type="submit" />
+                        </form>
+                    </div>
+                )
+            }
+
+        }
+        ReactDOM.render(<Parent />, rootHandle)
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        li {
+            color: rgb(133, 54, 58);
+        }
+
+        button {
+            background-color: aquamarine;
+            color: blue;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function UserList() {
+            const users = [
+                { id: 1, name: 'komala', email: 'komalamoger@gmail.com' },
+                { id: 2, name: 'mamata', email: 'mamatamoger@gmail.com' }
+            ]
+            return (
+                <ul>
+                    {
+                        users.map(function (user) {
+                            return <li key={user.id}>{user.name}<button onClick={() => {
+                                alert(user.email)
+                                // <h1>hello</h1>
+                            }}>show</button></li>
+                        })
+                    }
+                </ul>
+            )
+        }
+        ReactDOM.render(<UserList />, rootHandle)
+    </script>
+</body>
+
+</html>

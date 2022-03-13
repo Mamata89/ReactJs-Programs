@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Document</title>
+    <style>
+        button{
+            background-color: greenyellow;
+            color: green;
+        }
+        .name h2,h1{
+            color:green;
+        }
+        .username{
+            color:rgb(105, 218, 105);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const roothandle = document.getElementById('root')
+        class Display extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    username: ['komala', 'rovina', 'sachin', 'dev'],
+                    name: ''
+                }
+            }
+            handleClick=()=>{
+                const random=this.state.username[Math.round(Math.random()*(this.state.username.length-1))]
+                // [Math.round(Math.random()*(this.state.username.length-1))]
+                // const random=this.state.username[Math.round(Math.random()*(this.state.username.length-1))]
+                const task=this.state.username.filter((ele)=>{
+                    return ele!==random
+                })
+                this.setState({username:task,name:random})
+            }
+            render() {
+                return (
+                    <div class='name'>
+                        <h2>Random name {this.state.name}</h2>
+                        <h1>Users</h1>
+                        <ul>
+                            {this.state.username.length == 0 ? 'No more username' : (this.state.username.map((ele, i) => { return <li class='username' key={i}>{ele}</li> }
+                            ))}
+                        </ul>
+                      <button onClick={this.handleClick}>draw</button>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Display />, roothandle)
+    </script>
+</body>
+
+</html>

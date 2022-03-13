@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>del-task</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        const task = [
+            { id: 1, title: 'deploy software', iscompleted: true },
+            { id: 2, title: 'db backup', iscompleted: false },
+            { id: 3, title: 'write test', iscompleted: true },
+            { id: 4, title: 'ap docs', iscompleted: false }
+        ]
+        const ele = (
+            <ul>
+                {task.map(function (ele) {
+                    return <li key={ele.id}>{ele.iscompleted ? (<del style={{ color: 'red' }}>{ele.title}</del>) : (<span style={{ color: 'green' }}> {ele.title}</span>)
+                    }</li>
+                })}
+            </ul>
+        )
+        ReactDOM.render(ele, rootHandle)
+    </script>
+</body>
+
+</html>

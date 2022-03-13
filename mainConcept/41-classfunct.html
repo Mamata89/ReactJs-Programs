@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class Display extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    count: 0
+                }
+            }
+            handleClick = () => {
+                this.setState((prevstate) => {
+                    return {
+                        count: prevstate.count + 1
+                    }
+                })
+            }
+            render() {
+                return (
+                    <div>
+                        <h2>{this.state.count}</h2>
+                        <Btn handleClick={this.handleClick} />
+                    </div>
+                )
+            }
+        }
+        function Btn(props) {
+            return <button onClick={props.handleClick}>genertae</button>
+        }
+
+        ReactDOM.render(<Display />, rootHandle)
+    </script>
+</body>
+
+</html>

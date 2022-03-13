@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        ul {
+            color: green
+        }
+
+        table {
+            background-color: yellowgreen;
+            border-radius: 8px;
+            color: rgb(2, 39, 2);
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class RadioUsers extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    users: [
+                        { id: 1, name: 'komala', email: 'komalamoger@gmail.com' },
+                        { id: 2, name: 'komis', email: 'komismoger@gmail.com' },
+                        { id: 3, name: 'mamata', email: 'mamatamoger@gmail.com' },
+                        { id: 4, name: 'manoj', email: 'manojmoger@gmail.com' }
+                    ],
+                    list: false,
+                    table: false
+                }
+            }
+            handlelistClick = () => {
+                this.setState({
+                    list: true,
+                    table: false
+                })
+            }
+            handletableClick = () => {
+                this.setState({
+                    table: true,
+                    list: false
+                })
+            }
+            render() {
+                console.log('list', this.state.list)
+                console.log('table', this.state.table)
+                return (
+                    <div>
+                        <form>
+                            <input type="radio" class='list' name='display' onClick={this.handlelistClick} />list
+                            <input type="radio" class='table' name='display' onClick={this.handletableClick} />table
+                        </form>
+                        {this.state.list && <ul>
+                            {this.state.users.map(function (user) {
+                                return <div key={user.id}>
+                                    <li>{user.name}-{user.email}</li>
+                                </div>
+                            })}
+                        </ul>}
+                        {this.state.table && <table border='1'>
+                            <thead>
+                                <tr>
+                                    <th>sl.no</th>
+                                    <th>name</th>
+                                    <th>email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.users.map(function (user) {
+                                    return (
+                                        <tr key={user.id}>
+                                            <td>{user.id}</td>
+                                            <td>{user.name}</td>
+                                            <td>{user.email}</td>
+                                        </tr>
+                                    )
+                                })}
+                            </tbody>
+                        </table>}
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<RadioUsers />, rootHandle)
+    </script>
+</body>
+
+</html>

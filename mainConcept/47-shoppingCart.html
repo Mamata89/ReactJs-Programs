@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        function ShoppingCart(props) {
+            const Lineitems = [
+                { id: 1, name: 'KL', price: 150, Quantity: 2, total: 330 },
+                { id: 2, name: 'TN', price: 250, Quantity: 1, total: 250 }
+            ]
+
+            let total = 0
+            Lineitems.forEach((items) => total += items.price * items.Quantity)
+            return (
+                <div>
+                    <table border='1'>
+                        <thead>
+                            <tr>
+                                <th>sl.no</th>
+                                <th>name</th>
+                                <th>price</th>
+                                <th>quantity</th>
+                                <th>total</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {Lineitems.map((item) => {
+                                return <tr key={item.id}>
+                                    <td>{item.id}</td>
+                                    <td>{item.name}</td>
+                                    <td>{item.price}</td>
+                                    <td>{item.Quantity}</td>
+                                    <td>{item.price * item.Quantity}</td>
+                                </tr>
+                            })}
+                        </tbody>
+                    </table>
+                    <h1>Grand total={total}</h1>
+                </div>
+
+            )
+        }
+
+        ReactDOM.render(<ShoppingCart />, rootHandle)
+    </script>
+</body>
+
+</html>

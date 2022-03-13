@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+    <style>
+        tbody {
+            text-align: center;
+        }
+    </style>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type="text/babel">
+        const rootHandle = document.getElementById('root')
+        class Show extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    users: [
+                        { id: 1, name: 'komala', email: 'komalamoger@gmail.com' },
+                        { id: 2, name: 'mamata', email: 'mamatamoger@gmail.com' },
+                        { id: 3, name: 'manoj', email: 'manojmoger@gmail.com' },
+                        { id: 4, name: 'laxmi', email: 'laxmimoger@gmail.com' }
+                    ]
+                }
+            }
+
+            render() {
+                return (
+                    <div>
+                        <h1>listing users-{this.state.users.length}</h1>
+                        <table border='1'>
+                            <thead>
+                                <tr>
+                                    <th>sl.no</th>
+                                    <th>name</th>
+                                    <th>email</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {this.state.users.map((user) => {
+                                    return <tr key={user.id}>
+                                        <td>{user.id}</td>
+                                        <td>{user.name}</td>
+                                        <td><button onClick={() => { alert(user.email) }}>show</button></td>
+                                    </tr>
+                                })}
+
+                            </tbody>
+                        </table>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Show />, rootHandle)
+    </script>
+</body>
+
+</html>

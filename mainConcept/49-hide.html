@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class Hide extends React.Component {
+            constructor() {
+                super()
+                this.state = {
+                    ishidden: true
+                }
+            }
+            handleClick = (e) => {
+                this.setState({ ishidden: !this.state.ishidden })
+            }
+
+            handleSubmit = (e) => {
+                e.preventDefault()
+                const formdata = {
+                    ishidden: this.state.ishidden
+                }
+            }
+            render() {
+                return (
+                    <div>
+                        <form onSubmit={this.handleSubmit}>
+                            {!this.state.ishidden && <p>there is something</p>}
+                            <input type='submit' value={this.state.ishidden ? 'show' : 'hide'} onClick={this.handleClick} />
+                        </form>
+                    </div>
+                )
+            }
+        }
+        ReactDOM.render(<Hide />, rootHandle)
+    </script>
+</body>
+
+</html>

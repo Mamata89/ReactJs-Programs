@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Document</title>
+</head>
+
+<body>
+    <div id='root'></div>
+    <script src='./js/react-development.js'></script>
+    <script src='./js/reactDom-development.js'></script>
+    <script src='./js/babel.js'></script>
+    <script type='text/babel'>
+        const rootHandle = document.getElementById('root')
+        class Person extends React.Component {
+            render() {
+                console.log(this)
+                return <h1>hi-{this.props.name},{this.props.city}</h1>
+            }
+        }
+        ReactDOM.render(<Person name='komala' city='bangalore' />, rootHandle)
+
+    </script>
+</body>
+
+</html>
